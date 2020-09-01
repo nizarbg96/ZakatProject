@@ -1,0 +1,37 @@
+<section class="wrapper style1 mt-n4" #about>
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <div class="text-center">
+                <a class="link"><img [src]="src1" alt="" /></a>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <h3>Administrate your application</h3>
+            <mat-card>
+                <p>When you log on to the administrator account,
+                    You need the former to manage your web application. The following options are available to you:</p>
+                <ul>
+                    <li><strong>User administration :</strong> In the user administration, you create, edit, and delete the user profiles that have access to your JHipster application. Among other things, the distribution of roles is also possible.</li>
+                    <li><strong>Application metrics :</strong> The metrics section contains information about memory usage, incoming http requests, and service andcaching statistics.</li>
+                    <li><strong>Application status :</strong> Under “Health” you get a small overview of your application components functionality like hard disk space or databases.</li>
+                    <li><strong>Configuration :</strong> Click on the “Configuration” button to open the general settings menu on your JHipster website.</li>
+                    <li><strong>Audits :</strong> Audits provide you with an overview of successful (AUTHENTICATION_SUCCESS) and failed (AUTHENTICATION_FAILURE) login attempts including information on time and user.</li>
+                    <li><strong>Protocol/Logs :</strong> Here you get insight into active log mechanisms. You can also define a logging level (warning, information, tracking, error, message, etc.).</li>
+                    <li><strong>API overview :</strong> In the API overview, you see all REST interfaces of your application including the codes for controlling these APIs (optionally expandable for each API).</li>
+                    <li><strong>Database :</strong> Finally, the JHipster back end also offers an interface for your databases, which you can use to test and establish the connection.</li>
+
+
+                </ul>
+            </mat-card>
+
+            <div class="mt-5">
+                <jhi-admin-portfolio></jhi-admin-portfolio>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="style1">
+
+</section>

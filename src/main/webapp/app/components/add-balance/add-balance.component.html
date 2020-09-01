@@ -1,0 +1,377 @@
+<div style="margin-bottom: 50px;">
+<div class="row">
+<div  class="main col-md-12" id="section1">
+<section class="jumbotron shadow-lg mb-5">
+    <div class="row">
+        <div class="col-md-3">
+            <h1 class="font-weight-bold text-light">Add Balance</h1>
+            <p class=" mt-4 text-white font-weight-light">Our simple to use calculator will help take the stress out of working out
+                your Zakat amount. As long as you have details of all the assets you own to hand, you can
+                quickly find out how much you need to give.</p>
+        </div>
+    </div>
+</section>
+<header class="header">
+<h1 class="header__title">I'm ready to add a balance!</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+              <button type="button" (click)="scrollToElementWhenCalculation(section2)" class="calculation_btn mr-2"  >
+                  <p class="text-light">Start Calculation</p>
+              </button>
+                <button type="button" (click)="scrollToElementWhenSkipToDeposit(section2)" class="skip_btn ml-2" >
+                    <p class="text-light">Skip To Depose</p>
+                </button>
+            </div>
+        </div>
+    </div>
+</header>
+</div>
+</div>
+<!--PEN CONTENT     -->
+<div class="content main mb-4"   #section2>
+<!--content inner-->
+<div class="content__inner">
+<div class="container">
+<!--content title-->
+<p class="content__title">
+</div>
+<div class="container">
+<!--multisteps-form-->
+<div class="multisteps-form">
+<!--progress bar-->
+<div class="row">
+    <div class="col-12 col-lg-8 ml-auto mr-auto mb-4">
+        <div class="multisteps-form__progress">
+            <button class="multisteps-form__progress-btn js-active" type="button" title="User Info" >Balance Date</button>
+            <button [ngClass]="{'invisible': !startCalculation}" id ="2ndBt" class="multisteps-form__progress-btn" type="button" title="Address" >My Cash</button>
+            <button [ngClass]="{'invisible': !startCalculation}" class="multisteps-form__progress-btn" type="button" title="Order Info">Money owed to me</button>
+            <button [ngClass]="{'invisible': !startCalculation}" class="multisteps-form__progress-btn" type="button" title="Comments">Gold & Silver</button>
+            <button [ngClass]="{'invisible': !startCalculation}" class="multisteps-form__progress-btn" type="button" title="User Info">Business Assets</button>
+            <button  class="multisteps-form__progress-btn" type="button" title="Address">
+                <span *ngIf="startCalculation">Money I owe</span><span *ngIf="!startCalculation">Add a balance</span>
+            </button>
+            <button class="multisteps-form__progress-btn" type="button" title="Order Info">Save Balance</button>
+        </div>
+    </div>
+</div>
+    <jhi-alert-error></jhi-alert-error>
+<!--form panels-->
+<div class="row mt-4">
+    <div class="col-12 m-auto">
+        <form class="multisteps-form__form" name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <div class="multisteps-form__panel shadow p-4 rounded bg-white js-active" data-animation="scaleIn">
+                <h2 class="font-weight-bold card-title mb-4">Date Of Deposit</h2>
+                <h5 class="multisteps-form__title font-weight-lighter text-muted">Select balance date</h5>
+                <div class="multisteps-form__content">
+                    <!--DatePicker-->
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input id="field_balanceDate" type="text" class="form-control" name="balanceDate" ngbDatepicker #balanceDateDp="ngbDatepicker" formControlName="balanceDate"/>
+                            <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="balanceDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                        </div>
+                        <div *ngIf="editForm.get('balanceDate')!.invalid && (editForm.get('balanceDate')!.dirty || editForm.get('balanceDate')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('balanceDate')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="button-row d-flex mt-4">
+
+                        <button  [ngClass]="{'btn':true,'btn-primary':true,'ml-auto':true,'js-btn-next':true,'skip-next':!startCalculation}"
+                                id="skipToDepose" type="button" title="Next">Next</button>
+                    </div>
+                </div>
+            </div>
+            <!--cash in bank and in hand -->
+            <div  class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+                <div class="multisteps-form__content">
+                    <h2 class="font-weight-bold card-title mb-4">My Cash</h2>
+                    <h5 class="multisteps-form__title font-weight-lighter text-muted">Cash in BankAccount </h5>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="cashBankAccount" id="field_cashBankAccount"
+                               formControlName="cashBankAccount"/>
+                        <div *ngIf="editForm.get('cashBankAccount')!.invalid && (editForm.get('cashBankAccount')!.dirty || editForm.get('cashBankAccount')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('cashBankAccount')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                   [hidden]="!editForm.get('cashBankAccount')?.errors?.number" jhiTranslate="entity.validation.number">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <h5 class="multisteps-form__title font-weight-lighter text-muted">Cash in Hand </h5>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="cashHand" id="field_cashHand"
+                               formControlName="cashHand"/>
+                        <div *ngIf="editForm.get('cashHand')!.invalid && (editForm.get('cashHand')!.dirty || editForm.get('cashHand')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('cashHand')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                   [hidden]="!editForm.get('cashHand')?.errors?.number" jhiTranslate="entity.validation.number">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="button-row d-flex mt-4">
+                        <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+                        <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                    </div>
+                </div>
+            </div>
+            <!--Money Owed to me -->
+            <div  class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+                <div class="multisteps-form__content">
+                    <h2 class="font-weight-bold card-title mb-4">Money owed to me</h2>
+                    <h5 class="multisteps-form__title font-weight-lighter text-muted">Loan </h5>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="loan" id="field_loan"
+                               formControlName="loan"/>
+                        <div *ngIf="editForm.get('loan')!.invalid && (editForm.get('loan')!.dirty || editForm.get('loan')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('loan')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                   [hidden]="!editForm.get('loan')?.errors?.number" jhiTranslate="entity.validation.number">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <h5 class="multisteps-form__title font-weight-lighter text-muted">Money expected from a sale </h5>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="moneyFromSale" id="field_moneyFromSale"
+                               formControlName="moneyFromSale"/>
+                        <div *ngIf="editForm.get('moneyFromSale')!.invalid && (editForm.get('moneyFromSale')!.dirty || editForm.get('moneyFromSale')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('moneyFromSale')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                   [hidden]="!editForm.get('moneyFromSale')?.errors?.number" jhiTranslate="entity.validation.number">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="button-row d-flex mt-4">
+                        <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+                        <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                    </div>
+                </div>
+            </div>
+            <!--My Gold And Silver -->
+            <div  class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+                <div class="multisteps-form__content">
+                    <h2 class="font-weight-bold card-title mb-4">My Gold & Silver</h2>
+                    <h5 class="multisteps-form__title font-weight-lighter text-muted">Gold </h5>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="gold" id="field_gold"
+                               formControlName="gold"/>
+                        <div *ngIf="editForm.get('gold')!.invalid && (editForm.get('gold')!.dirty || editForm.get('gold')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('gold')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                   [hidden]="!editForm.get('gold')?.errors?.number" jhiTranslate="entity.validation.number">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <h5 class="multisteps-form__title font-weight-lighter text-muted">Silver</h5>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="silver" id="field_silver"
+                               formControlName="silver"/>
+                        <div *ngIf="editForm.get('silver')!.invalid && (editForm.get('silver')!.dirty || editForm.get('silver')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('silver')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                   [hidden]="!editForm.get('silver')?.errors?.number" jhiTranslate="entity.validation.number">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="button-row d-flex mt-4">
+                        <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+                        <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                    </div>
+                </div>
+            </div>
+            <!--My Bussiness Assets -->
+            <div  class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+                <div class="multisteps-form__content">
+                    <h2 class="font-weight-bold card-title mb-4">My business assets</h2>
+                    <h5 class="multisteps-form__title font-weight-lighter text-muted">Cash </h5>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="assetsCash" id="field_assetsCash"
+                               formControlName="assetsCash"/>
+                        <div *ngIf="editForm.get('assetsCash')!.invalid && (editForm.get('assetsCash')!.dirty || editForm.get('assetsCash')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('assetsCash')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                   [hidden]="!editForm.get('assetsCash')?.errors?.number" jhiTranslate="entity.validation.number">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <h5 class="multisteps-form__title font-weight-lighter text-muted">Receivables</h5>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="receivables" id="field_receivables"
+                               formControlName="receivables"/>
+                        <div *ngIf="editForm.get('receivables')!.invalid && (editForm.get('receivables')!.dirty || editForm.get('receivables')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('receivables')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                   [hidden]="!editForm.get('receivables')?.errors?.number" jhiTranslate="entity.validation.number">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <h5 class="multisteps-form__title font-weight-lighter text-muted">Stock</h5>
+                    <div class="form-group">
+                        <input type="number" class="form-control" name="stock" id="field_stock"
+                               formControlName="stock"/>
+                        <div *ngIf="editForm.get('stock')!.invalid && (editForm.get('stock')!.dirty || editForm.get('stock')!.touched)">
+                            <small class="form-text text-danger"
+                                   *ngIf="editForm.get('stock')?.errors?.required" jhiTranslate="entity.validation.required">
+                                This field is required.
+                            </small>
+                            <small class="form-text text-danger"
+                                   [hidden]="!editForm.get('stock')?.errors?.number" jhiTranslate="entity.validation.number">
+                                This field should be a number.
+                            </small>
+                        </div>
+                    </div>
+                    <div class="button-row d-flex mt-4">
+                        <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+                        <button class="btn btn-primary ml-auto js-btn-next" type="button" title="Next">Next</button>
+                    </div>
+                </div>
+            </div>
+            <!--Money I owe-->
+            <div  class="multisteps-form__panel shadow p-4 rounded bg-white" data-animation="scaleIn">
+                <div class="multisteps-form__content">
+                        <h2 class="font-weight-bold card-title mb-4">Money I owe</h2>
+                        <h5 class="multisteps-form__title font-weight-lighter text-muted">Personal loans </h5>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="personalLoans" id="field_personalLoans"
+                                   formControlName="personalLoans"/>
+                            <div *ngIf="editForm.get('personalLoans')!.invalid && (editForm.get('personalLoans')!.dirty || editForm.get('personalLoans')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('personalLoans')?.errors?.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                       [hidden]="!editForm.get('personalLoans')?.errors?.number" jhiTranslate="entity.validation.number">
+                                    This field should be a number.
+                                </small>
+                            </div>
+                        </div>
+                        <h5 class="multisteps-form__title font-weight-lighter text-muted">Utility bills</h5>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="bills" id="field_bills"
+                                   formControlName="bills"/>
+                            <div *ngIf="editForm.get('bills')!.invalid && (editForm.get('bills')!.dirty || editForm.get('bills')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('bills')?.errors?.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                       [hidden]="!editForm.get('bills')?.errors?.number" jhiTranslate="entity.validation.number">
+                                    This field should be a number.
+                                </small>
+                            </div>
+                        </div>
+                    <div class="button-row d-flex mt-4">
+                        <button class="btn btn-primary js-btn-prev" type="button" title="Prev">Prev</button>
+                        <button  class="btn btn-primary ml-auto js-btn-next"
+                                [disabled]="editForm.invalid || isSaving" type="button" title="Next">Done</button>
+                    </div>
+                </div>
+            </div>
+            <!--single form panel-->
+            <div class="multisteps-form__panel shadow p-4 rounded bg-white"  data-animation="scaleIn">
+                <div class="multisteps-form__content">
+                    <div *ngIf="!startCalculation && !formDone">
+                        <h2 class="font-weight-bold card-title mb-4">Balance Amount</h2>
+                        <h5 class="multisteps-form__title font-weight-lighter text-muted">final balance amount</h5>
+                        <div class="form-group">
+                            <input type="number" class="form-control" name="balanceAmount" id="field_balanceAmount"
+                                   formControlName="balanceAmount"/>
+                            <div *ngIf="editForm.get('balanceAmount')!.invalid && (editForm.get('balanceAmount')!.dirty || editForm.get('balanceAmount')!.touched)">
+                                <small class="form-text text-danger"
+                                       *ngIf="editForm.get('balanceAmount')?.errors?.required" jhiTranslate="entity.validation.required">
+                                    This field is required.
+                                </small>
+                                <small class="form-text text-danger"
+                                       [hidden]="!editForm.get('balanceAmount')?.errors?.number" jhiTranslate="entity.validation.number">
+                                    This field should be a number.
+                                </small>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div *ngIf="formDone">
+                        <h1 class="mb-1 text-primary">Deposit Info</h1>
+                        <p class="mb-3 text-muted">Here's a summary of the informations you've provided</p>
+                        <mat-divider></mat-divider>
+                        <div class="row mt-3">
+                            <div class="col-md-3" *ngIf="calculateBalanceAmount()>=nisabAmount">
+                                <h3 class="multisteps-form__title mb-1 mt-4">Balance Amount</h3>
+                                <h5 class="multisteps-form__title text-success mb-3">{{calculateBalanceAmount()}}<strong>dt</strong></h5>
+                                <h3 class="multisteps-form__title mb-1">Balance Date</h3>
+                                <h5 class="multisteps-form__title text-success mb-3">{{getBalanceDate()}}</h5>
+                            </div>
+                            <div class="col-md-3" *ngIf="calculateBalanceAmount()< nisabAmount">
+                                <h3 class="multisteps-form__title mb-1 mt-4">Balance Amount</h3>
+                                <h5 class="multisteps-form__title text-danger mb-3">{{calculateBalanceAmount()}}<strong>dt</strong></h5>
+                                <h3 class="multisteps-form__title mb-1">Balance Date</h3>
+                                <h5 class="multisteps-form__title text-danger mb-3">{{getBalanceDate()}}</h5>
+                            </div>
+                            <div class="col-md-1"><mat-divider [vertical]="true" style="height:100%"></mat-divider></div>
+                            <div class="col-md-3">
+                                <h3 class="multisteps-form__title mb-1 mt-4">Today's Nisab</h3>
+                                <h5 class="multisteps-form__title text-warning mb-3">{{nisabAmount}}<strong>dt</strong></h5>
+                                <h5 class="multisteps-form__title mb-1 font-weight-bold text-success"
+                                    *ngIf="calculateBalanceAmount()>=nisabAmount">Your balance amount is above Nisab</h5>
+                                <h5 class="multisteps-form__title mb-1 font-weight-bold text-danger"
+                                    *ngIf="calculateBalanceAmount()<nisabAmount">Your balance amount is under Nisab</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="button-row d-flex mt-4">
+                        <button *ngIf="startCalculation" [ngClass]="{'btn':true,'btn-primary':true,
+                        'js-btn-prev':true,'skip-prev':!startCalculation}" type="button" title="Prev">Prev</button>
+                        <button *ngIf="!startCalculation && !formDone " [ngClass]="{'btn':true,'btn-primary':true,
+                        'js-btn-prev':true,'skip-prev':!startCalculation}" type="button" title="Prev">Prev</button>
+                        <button *ngIf="formDone && !startCalculation" class="btn btn-primary" (click)="doneFalse()"> Prev </button>
+                        <button *ngIf="!formDone" class="btn btn-success ml-auto" (click)="doneTrue()">Next</button>
+                        <button *ngIf="formDone" class="btn btn-success ml-auto" [disabled]="editForm.invalid || isSaving"
+                                type="submit" title="Send">Save Balance</button>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+</div>
+</div>
+</div>
+<script  src="content/js/add-balance.js"></script>
+</div>
+</div>

@@ -1,0 +1,54 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="period">
+            <h2><span jhiTranslate="zakatReminderApp.period.detail.title">Period</span> {{ period.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="zakatReminderApp.period.beginDate">Begin Date</span></dt>
+                <dd>
+                    <span>{{ period.beginDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="zakatReminderApp.period.endDate">End Date</span></dt>
+                <dd>
+                    <span>{{ period.endDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="zakatReminderApp.period.duration">Duration</span></dt>
+                <dd>
+                    <span>{{ period.duration }}</span>
+                </dd>
+                <dt><span jhiTranslate="zakatReminderApp.period.taxable">Taxable</span></dt>
+                <dd>
+                    <span>{{ period.taxable }}</span>
+                </dd>
+                <dt><span jhiTranslate="zakatReminderApp.period.zakat">Zakat</span></dt>
+                <dd>
+                    <div *ngIf="period.zakatId">
+                        <a [routerLink]="['/zakat', period.zakatId, 'view']">{{ period.zakatId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="zakatReminderApp.period.extraUser">Extra User</span></dt>
+                <dd>
+                    <div *ngIf="period.extraUserId">
+                        <a [routerLink]="['/extra-user', period.extraUserId, 'view']">{{ period.extraUserId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/period', period.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

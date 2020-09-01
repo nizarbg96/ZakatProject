@@ -1,0 +1,125 @@
+@import '~bootstrap/scss/functions';
+@import '~bootswatch/dist/materia/variables';
+@import '~bootstrap/scss/variables';
+
+/* ==========================================================================
+Navbar
+========================================================================== */
+
+.navbar-version {
+  font-size: 0.65em;
+  color: $navbar-dark-color;
+}
+
+.profile-image {
+  height: 1.75em;
+  width: 1.75em;
+}
+.navbar_fixed {
+  transition: all 0.3s ease;
+  z-index: 1000;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 8vh;
+  padding: 0.2rem 1rem;
+  .dropdown-item.active,
+  .dropdown-item.active:focus,
+  .dropdown-item.active:hover {
+    background-color: $dark;
+  }
+
+  ul.navbar-nav {
+    .nav-item {
+      margin-left: 0.5em;
+    }
+  }
+
+  a.nav-link {
+    font-weight: 400;
+  }
+
+  .navbar-toggler {
+    &:hover {
+      color: $navbar-dark-hover-color;
+    }
+  }
+}
+
+.navbar {
+  padding: 0.2rem 1rem;
+  transition: all 0.3s ease;
+  .dropdown-item.active,
+  .dropdown-item.active:focus,
+  .dropdown-item.active:hover {
+    background-color: $dark;
+  }
+
+  ul.navbar-nav {
+    .nav-item {
+      margin-left: 0.5em;
+    }
+  }
+
+  a.nav-link {
+    font-weight: 400;
+  }
+
+  .navbar-toggler {
+    &:hover {
+      color: $navbar-dark-hover-color;
+    }
+  }
+}
+.copyrightNav {
+  padding: 15px;
+  margin: 0;
+  .material-icons {
+    font-size: 18px;
+    position: relative;
+    top: 3px;
+    color: white;
+  }
+}
+
+/* ==========================================================================
+Logo styles
+========================================================================== */
+.logo-img {
+  height: 45px;
+  width: 45px;
+  display: inline-block;
+  vertical-align: middle;
+  background: url('../../../content/images/zakat-png-7.png') no-repeat center center;
+  background-size: contain;
+}
+
+.navbar_transparent {
+  background: rgba($color: #333333, $alpha: 1);
+  transition: all 0.4s;
+  z-index: 1000;
+}
+
+@keyframes jiggle {
+  0% {
+    transform: none;
+  }
+  25% {
+    transform: rotateZ(5deg);
+  }
+
+  75% {
+    transform: rotateZ(-5deg);
+  }
+  100% {
+    transform: none;
+  }
+}
+.animate-btn:hover {
+  color: white;
+  animation: jiggle ease-in-out 400ms infinite;
+}
+.navbar-up {
+  height: 0%;
+}

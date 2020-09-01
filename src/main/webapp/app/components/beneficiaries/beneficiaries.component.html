@@ -1,0 +1,69 @@
+<div class="row">
+    <div class="col-md-7 mt-4">
+        <div class="card">
+            <div class="card-header card-header-danger" style="background: #2196F3">
+                <h4 class="card-title ">Beneficiaries Table</h4>
+                <p class="card-category"> Here you can see list of the beneficiaries and select
+                    beneficiary to check his profile and payments</p>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <jhi-beneficiaries-table (beneficiaryWasSelected)="selectedBeneficiary=$event"></jhi-beneficiaries-table>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col-md-5 ">
+        <div class="card card-profile" style="width: 80%;height:80%;margin:60px auto auto">
+            <div class="card-avatar">
+                <a href="javascript:void(0)">
+                    <img class="img" [src]=avatarUrl />
+                </a>
+            </div>
+            <div class="card-body center-vertically">
+                <div>
+                    <h6 class="card-category text-gray"> Zakat-Beneficiary</h6>
+                    <div class="mt-2" *ngIf="!selectedBeneficiary" >
+                        <p  class="card-description">Select a beneficiary from table to view details</p>
+                    </div>
+                    <div *ngIf="selectedBeneficiary">
+                        <h4 class="card-title font-weight-bold" >{{selectedBeneficiary.firstName}} {{selectedBeneficiary.lastName}}</h4>
+                        <h6 class=" text-primary">phone number : </h6>
+                        <p  class="card-description">{{selectedBeneficiary.phoneNumber}}</p>
+                        <h6 class=" text-primary">Adress : </h6>
+                        <p class="card-description">{{selectedBeneficiary.adress}}</p>
+                        <h6 class=" text-primary">Other Details : </h6>
+                        <p class="card-description">
+                            {{selectedBeneficiary.otherDetails}}
+                        </p>
+                    </div>
+                    <a *ngIf="selectedBeneficiary" (click)="giveZakat()" class="btn btn-success btn-round">give zakat</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="mb-5" *ngIf="!selectedBeneficiary" style="width: 100%;margin:60px auto 0">
+            <jhi-info-beneficary-table></jhi-info-beneficary-table>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card  mb-5" *ngIf="selectedBeneficiary" style="width: 100%;margin:60px auto 0">
+            <div class="card-header card-header-danger" style="background: #2196F3">
+                <h4 class="card-title ">Payments</h4>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <jhi-beneficiary-payments-table [beneficiaryId]="selectedBeneficiary.id"></jhi-beneficiary-payments-table>                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

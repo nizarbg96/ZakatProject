@@ -1,0 +1,51 @@
+{
+    "name": "Zakat",
+    "fields": [
+        {
+            "fieldName": "dueAmount",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "remainingAmount",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "payment",
+            "otherEntityRelationshipName": "zakat",
+            "relationshipName": "payments"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "period",
+            "otherEntityRelationshipName": "zakat",
+            "relationshipName": "period",
+            "ownerSide": false
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "extraUser",
+            "otherEntityRelationshipName": "zakats",
+            "relationshipName": "extraUser",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200228205000",
+    "entityTableName": "zakat",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

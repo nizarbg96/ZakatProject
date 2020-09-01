@@ -1,0 +1,45 @@
+{
+    "name": "Payment",
+    "fields": [
+        {
+            "fieldName": "paymentAmount",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "paymentDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "zakat",
+            "otherEntityRelationshipName": "payments",
+            "relationshipName": "zakat",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "beneficiary",
+            "otherEntityRelationshipName": "payments",
+            "relationshipName": "beneficiary",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200228205100",
+    "entityTableName": "payment",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

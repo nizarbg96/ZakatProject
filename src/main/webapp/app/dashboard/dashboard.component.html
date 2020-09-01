@@ -1,0 +1,127 @@
+<div *ngIf="!bankAccount" class="row">
+    <div class="col-md-7">
+        <div  class="alert alert-danger">
+            <span>you'r bank account is not setted Up yet  ! </span>
+            <br>
+            <br>
+            <button mat-raised-button (click)="openDialog()">Set up your Bank Account</button>
+        </div>
+    </div>
+</div>
+<div class="row" *ngIf="account.authorities[0] === 'ROLE_ADMIN'">
+    <div class="col-md-4 text-center">
+        <span class="hipster img-fluid rounded mt-5"></span>
+    </div>
+
+    <div class="col-md-8">
+        <h1 class="display-4" jhiTranslate="home.title">Welcome, Administrator!</h1>
+
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <div class="card card-product">
+                    <div class="card-image" data-header-animation="true">
+                        <a href="#pablo">
+                            <img class="img" [src]="card3">
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-actions mt-2">
+                            <div class=" text-center">
+                                <a   class="btn btn-success btn-round"
+                                     style="width: 90%;margin:auto" routerLink="/administration">Administration</a>
+                            </div>
+                        </div>
+                        <h4 class="card-title">
+                            <a href="#pablo">Administrate the application</a>
+                        </h4>
+                        <div class="card-description">
+                            Here ou can handle administration services.
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price" >
+                            <h4>User management, Metrics, Health, Configuaration .. </h4>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card card-product">
+                    <div class="card-image" data-header-animation="true">
+                        <a href="">
+                            <img class="img" [src]="card2">
+                        </a>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-actions mt-2">
+                            <div class=" text-center">
+                                <a   class="btn btn-success btn-round"
+                                     style="width: 90%;margin:auto" routerLink="/manage-entities">Entities</a>
+                            </div>
+                        </div>
+                        <h4 class="card-title">
+                            <a href="">Manage Entities</a>
+                        </h4>
+                        <div class="card-description">
+                            Here you can add,edit,delete and view all application entities .
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <div class="price" >
+                            <h4>Balance, Period, Zakat, BankAccount, Beneficiary ..</h4>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+    </div>
+</div>
+
+
+<jhi-dashboard-cards ></jhi-dashboard-cards>
+
+
+
+
+    <div *ngIf="alertsSize===0" class="row mb-2">
+        <div class="col-md-12 text-center">
+            <jhi-dashboard-zakat-table></jhi-dashboard-zakat-table>
+        </div>
+    </div>
+    <div class="row">
+        <!--left main column-->
+        <div class="col-md-6 mt-5">
+
+                <div  *ngIf="alertsSize>0"  class="text-center mt-2" >
+                    <div class="mr-2">
+                        <jhi-zakat-alert></jhi-zakat-alert>
+                    </div>
+                </div>
+        </div>
+        <!--right main column-->
+        <div class="col-md-6">
+
+                <div *ngIf="alertsSize>0" class="mb-1">
+                    <div class="card">
+                        <div class="card-header card-header-icon" data-background-color="blue">
+                            <i class="material-icons">assignment</i>
+                        </div>
+                        <div class="card-content">
+                            <h4 class="card-title">Periods that you should pay Zakat</h4>
+                            <mat-divider></mat-divider>
+                            <jhi-dashboard-zakat-table style="margin-top: -50px"></jhi-dashboard-zakat-table>
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+
+    </div>
+
+<jhi-latest-deposits></jhi-latest-deposits>

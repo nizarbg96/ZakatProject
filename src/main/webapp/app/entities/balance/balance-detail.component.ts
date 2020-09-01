@@ -1,0 +1,23 @@
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
+import { IBalance } from 'app/shared/model/balance.model';
+
+@Component({
+  selector: 'jhi-balance-detail',
+  templateUrl: './balance-detail.component.html',
+  styleUrls: ['./../entities.scss']
+})
+export class BalanceDetailComponent implements OnInit {
+  balance: IBalance | null = null;
+
+  constructor(protected activatedRoute: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.activatedRoute.data.subscribe(({ balance }) => (this.balance = balance));
+  }
+
+  previousState(): void {
+    window.history.back();
+  }
+}

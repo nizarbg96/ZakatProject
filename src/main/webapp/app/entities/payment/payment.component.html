@@ -1,0 +1,89 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="zakatReminderApp.payment.home.title">Payments</span>
+
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-payment" [routerLink]="['/payment/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="zakatReminderApp.payment.home.createLabel">
+            Create a new Payment
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="payments?.length === 0">
+        <span jhiTranslate="zakatReminderApp.payment.home.notFound">No payments found</span>
+    </div>
+
+    <mat-card>
+
+        <div class="table-responsive" id="entities" *ngIf="payments?.length > 0">
+            <table class="table table-striped table-borderless" aria-describedby="page-heading">
+                <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th [ngClass]="{'invisible': account.authorities[0] !== 'ROLE_ADMIN'}" scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="paymentAmount"><span jhiTranslate="zakatReminderApp.payment.paymentAmount">Payment Amount</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="paymentDate"><span jhiTranslate="zakatReminderApp.payment.paymentDate">Payment Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="zakatId"><span jhiTranslate="zakatReminderApp.payment.zakat">Zakat</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="beneficiaryId"><span jhiTranslate="zakatReminderApp.payment.beneficiary">Beneficiary</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let payment of payments ;trackBy: trackId">
+                    <td [ngClass]="{'invisible': account.authorities[0] !== 'ROLE_ADMIN'}" ><a [routerLink]="['/payment', payment.id, 'view']">{{ payment.id }}</a></td>
+                    <td>{{ payment.paymentAmount }}</td>
+                    <td>{{ payment.paymentDate | date:'mediumDate' }}</td>
+                    <td>
+                        <div *ngIf="payment.zakatId">
+                            <a [routerLink]="['/zakat', payment.zakatId , 'view']" >{{ payment.zakatId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="payment.beneficiaryId">
+                            <a [routerLink]="['/beneficiary', payment.beneficiaryId , 'view']" >{{ payment.beneficiaryId }}</a>
+                        </div>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/payment', payment.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/payment', payment.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(payment)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="payments?.length > 0">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+            </div>
+        </div>
+    </mat-card>
+
+</div>

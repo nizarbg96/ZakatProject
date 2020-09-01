@@ -1,0 +1,45 @@
+{
+    "name": "Balance",
+    "fields": [
+        {
+            "fieldName": "balanceAmount",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "balanceDate",
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "bankAccount",
+            "otherEntityRelationshipName": "balances",
+            "relationshipName": "bankAccount",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "period",
+            "otherEntityRelationshipName": "balances",
+            "relationshipName": "period",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200228204800",
+    "entityTableName": "balance",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

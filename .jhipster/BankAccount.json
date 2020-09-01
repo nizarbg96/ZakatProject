@@ -1,0 +1,51 @@
+{
+    "name": "BankAccount",
+    "fields": [
+        {
+            "fieldName": "bankName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "bankAdress",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "rib",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "balance",
+            "otherEntityRelationshipName": "bankAccount",
+            "relationshipName": "balances"
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "extraUser",
+            "otherEntityRelationshipName": "bankAccount",
+            "relationshipName": "extraUser",
+            "ownerSide": false
+        }
+    ],
+    "changelogDate": "20200228204700",
+    "entityTableName": "bank_account",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

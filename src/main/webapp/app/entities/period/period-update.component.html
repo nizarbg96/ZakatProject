@@ -1,0 +1,86 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-period-heading" jhiTranslate="zakatReminderApp.period.home.createOrEditLabel">Create or edit a Period</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zakatReminderApp.period.beginDate" for="field_beginDate">Begin Date</label>
+                    <div class="input-group">
+                        <input id="field_beginDate" type="text" class="form-control" name="beginDate" ngbDatepicker #beginDateDp="ngbDatepicker" formControlName="beginDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="beginDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div *ngIf="editForm.get('beginDate')!.invalid && (editForm.get('beginDate')!.dirty || editForm.get('beginDate')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('beginDate')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zakatReminderApp.period.endDate" for="field_endDate">End Date</label>
+                    <div class="input-group">
+                        <input id="field_endDate" type="text" class="form-control" name="endDate" ngbDatepicker #endDateDp="ngbDatepicker" formControlName="endDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="endDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zakatReminderApp.period.duration" for="field_duration">Duration</label>
+                    <input type="number" class="form-control" name="duration" id="field_duration"
+                           formControlName="duration"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zakatReminderApp.period.taxable" for="field_taxable">Taxable</label>
+                    <input type="checkbox" class="form-control" name="taxable" id="field_taxable"
+                           formControlName="taxable"/>
+                    <div *ngIf="editForm.get('taxable')!.invalid && (editForm.get('taxable')!.dirty || editForm.get('taxable')!.touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('taxable')?.errors?.required" jhiTranslate="entity.validation.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zakatReminderApp.period.zakat" for="field_zakat">Zakat</label>
+                    <select class="form-control" id="field_zakat" name="zakat" formControlName="zakatId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="zakatOption.id" *ngFor="let zakatOption of zakats; trackBy: trackById">{{ zakatOption.id }}</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="zakatReminderApp.period.extraUser" for="field_extraUser">Extra User</label>
+                    <select class="form-control" id="field_extraUser" name="extraUser" formControlName="extraUserId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="extraUserOption.id" *ngFor="let extraUserOption of extrausers; trackBy: trackById">{{ extraUserOption.id }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

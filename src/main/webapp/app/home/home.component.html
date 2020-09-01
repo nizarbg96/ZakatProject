@@ -1,0 +1,176 @@
+<!-- Header -->
+<div *ngIf="!isAuthenticated()"  >
+
+    <header class="masthead shadow-lg text-center text-white">
+        <div class="row">
+            <div class="col-md-7 ">
+        <div class="masthead-content ">
+
+                        <h1 class="masthead-heading mb-0">Zakat Reminder</h1>
+                        <h2 class="masthead-subheading mb-0">Ease your way </h2>
+                        <img class="logo-img" [src]="img4" alt="">
+
+        </div>
+            </div>
+        </div>
+    </header>
+
+        <div class="row mt-5">
+            <div class="col-md-5 ml-5 mr-5">
+                    <img class="dashboard-img" [src]="dashboardImg" alt="dashboard-img">
+            </div>
+            <div class="col-md-6 center-vertically">
+                <div>
+                    <p>Zakat Reminder is a web application that ease the process of Zakat for muslims and
+                        provide you the services you need to make it right and maintain the third pillar of Islam </p>
+                    <ul>
+                        <li>Allow the user to obtain a secure space: create an account with their email address and password, then activate their account via email.</li>
+                        <li>Allow the user to link the application to their bank account.</li>
+                        <li>Help the user to know if he is responsible for the Zakat or not at all times.</li>
+                        <li>If he is liable: calculate the amount due.</li>
+                        <li>Maintain a list of Zakat beneﬁciaries.</li>
+                        <li>If he pays: help the user to keep tracking their payment history.</li>
+                        <li>Calculate the remainder of the Zakat at any time.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    <section>
+        <div class="container " style="height: 30vh">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <div class="container">
+                        <div class="row ">
+                            <div class="col-md-12 text-center">
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="col-md-12 text-center center-vertically-buttons">
+                                <a  class="btn" (click)="login()">
+                                    <svg width="277" height="62">
+                                        <defs>
+                                            <linearGradient id="grad1">
+                                                <stop offset="0%" stop-color="black"/>
+                                                <stop offset="100%" stop-color="green" />
+                                            </linearGradient>
+                                        </defs>
+                                        <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
+                                    </svg>
+                                    <!--<span>Voir mes réalisations</span>-->
+                                    <span>Sign In</span>
+                                </a>
+                                <a  class="btn" routerLink="/account/register">
+                                    <svg width="277" height="62">
+                                        <defs>
+                                            <linearGradient id="grad1">
+                                                <stop offset="0%" stop-color="black"/>
+                                                <stop offset="100%" stop-color="green" />
+                                            </linearGradient>
+                                        </defs>
+                                        <rect x="5" y="5" rx="25" fill="none" stroke="url(#grad1)" width="266" height="50"></rect>
+                                    </svg>
+                                    <!--<span>Voir mes réalisations</span>-->
+                                    <span>Register</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" style="position: relative">
+            <div class="bg-image">
+            </div>
+            <div class="bg-text">
+                <h1>Our Services</h1>
+                <p>Check out our Zakat Reminder Services :  get balances, creating balances, time to pay alert ,
+                    zakat amount calculation, beneficiaries list, payment History and more ...</p>
+            </div>
+        </div>
+        <!--<div class="row services-bg mb-5 shadow-lg">
+            <div class="col-md-12 text-center center-vertically ">
+                <h1 class="masthead-heading" style="color: whitesmoke;
+                 font-size: 5rem;">Our Services</h1>
+            </div>
+        </div>-->
+        <div class="container mt-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="p-5">
+                        <img class="img-fluid rounded-circle" [src]="img1" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="p-5">
+                        <h2 class="display-4">Calculating and adding Balances</h2>
+                        <p>By binding the application to your bank account online, you can check all your balances and
+                            if you are eligiable to pay Zakat or not. </p>
+                        <p>Our simple to use calculator will help you to take the stress out of working out your Zakat amount.
+                            by our 4 simple steps to working out your Zakat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="p-5">
+                        <img class="img-fluid rounded-circle" [src]="img2" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="p-5">
+                        <h2 class="display-4">Register Payments</h2>
+                        <p>Our Application alert you when you are due to pay Zakat,
+                            therefore you can see periods that u should pay,
+                            select which one you want to pay and the beneficiary to give and finally saving the payment. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 order-lg-2">
+                    <div class="p-5">
+                        <img class="img-fluid rounded-circle" [src]="img3" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 order-lg-1">
+                    <div class="p-5">
+                        <h2 class="display-4">Maintain a list of Beneficiaries </h2>
+                        <p>After making payments, you can check beneficiaries payment history and remaining amount
+                            if exists that you still have to pay to complete your Zakat.</p>
+                        <p>You can create new Beneficiaries and track their payment history sorted by the most given one to the less payed one.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 bg-black">
+        <div class="container">
+            <div class="copyrightNav  text-center">
+                <div> <mat-icon>call</mat-icon>
+                    <a  href="tel:+ 216 70 25 33 57" style="color: white">Tél : + 216 70 25 33 57  </a>  <mat-icon>email</mat-icon>
+                    <a href="mailto:contact@smoothalgo.com" style="color: white">| smoothalgo@gmail.com</a> </div>
+                <p style="color: white">
+                    Copyright &copy;
+                    {{test | date: 'yyyy'}}
+                    <a href="http://smoothalgo.com/">Smooth Algo</a>, all rights reserved.
+                </p>
+            </div>
+        </div>
+        <!-- /.container -->
+    </footer>
+</div>
+ <div *ngIf="isAuthenticated()">
+     <jhi-dashboard></jhi-dashboard>
+ </div>
+

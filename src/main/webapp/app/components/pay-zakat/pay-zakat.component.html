@@ -1,0 +1,147 @@
+<section class="jumbotron shadow-lg mb-5">
+    <div class="row">
+        <div class="col-md-5">
+            <h1 ><strong>Register Payments</strong><span><br></span>Here you can register your paymants to beneficiarys so you can checkout then
+            your zakat remaining amounts</h1>
+        </div>
+    </div>
+</section>
+<jhi-alert-error></jhi-alert-error>
+<jhi-alert></jhi-alert>
+<div class="container mt-5 mb-5">
+    <mat-card [class.mat-elevation-z8]="true">
+    <div class="row">
+        <div class="col-md-12">
+                <mat-vertical-stepper  [linear]="true" #stepper>
+                    <mat-step [stepControl]="firstFormGroup">
+                        <form [formGroup]="firstFormGroup">
+                            <ng-template matStepLabel>select zakat to pay</ng-template>
+                            <h4>Zakat</h4>
+                            <mat-form-field appearance="fill" style="min-width: 400px">
+                                <mat-label>Zakat</mat-label>
+                                <mat-select style="min-width: 400px;max-width: max-content" formControlName="firstCtrl" required
+                                            (selectionChange)="onSelectZakat($event.value)">
+                                    <mat-option style="min-width: 300px" *ngFor="let element of dataSource" [value]="element.zakatId">
+                                        <strong>from</strong> {{getPeriodBeginDate(element.period)}} <strong>to</strong> {{getPeriodEndDate(element.period)}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <div>
+                                <button mat-raised-button class="btn btn-success" color="primary" matStepperNext>Next</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step [stepControl]="secondFormGroup">
+                        <form [formGroup]="secondFormGroup">
+                            <ng-template matStepLabel>enter the amount to pay</ng-template>
+                            <div class="row mt-3">
+                                <div class="col-md-6">
+                                    <h4>Due Amount</h4>
+                                    <p *ngIf="selectedZakat" class="text-primary">{{selectedZakat.dueAmount}} <strong>TND</strong></p>
+                                    <mat-divider></mat-divider>
+                                    <br>
+                                    <h4>Remainig Amount</h4>
+                                    <p *ngIf="selectedZakat" class="text-primary">{{selectedZakat.remainingAmount}} <strong>TND</strong></p>
+                                </div>
+                                <div class="col-md-1"><mat-divider [vertical]="true" style="height:100%"></mat-divider></div>
+                                <div class="col-md-5">
+                                    <h4>Amount To Pay</h4>
+                                    <mat-form-field appearance="fill">
+                                        <mat-label>Amount</mat-label>
+                                        <input [(ngModel)]="amountToPay" matInput formControlName="secondCtrl" type="number" >
+                                        <span><strong>TND</strong></span>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div>
+                                <button class="btn btn-primary" mat-raised-button color="basic" matStepperPrevious>Back</button>
+                                <button class="btn btn-success" mat-raised-button color="primary" matStepperNext>Next</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step [stepControl]="thirdFormGroup">
+                        <form [formGroup]="thirdFormGroup">
+                            <ng-template matStepLabel>select beneficiary</ng-template>
+                            <h4 >Beneficiary</h4>
+                            <mat-form-field style="min-width: 400px" appearance="fill">
+                                <mat-label>beneficiary</mat-label>
+                                <mat-select style="min-width: 400px;max-width: max-content" formControlName="thirdCtrl"
+                                            (selectionChange)="onSelectBeneficiary($event.value)" required [ngModel]="newBeneficiary">
+                                    <mat-option style="min-width: 300px" *ngFor="let element of beneficiaries" [value]="element.id">
+                                        {{element.firstName}} {{element.lastName}}
+                                    </mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                            <p>no beneficiaries? <a class="text-primary" (click)="openDialog()" >add a new beneficiary</a></p>
+                            <div>
+                                <button class="btn btn-primary" mat-raised-button color="basic" matStepperPrevious>Back</button>
+                                <button class="btn btn-success" mat-raised-button color="primary" matStepperNext>Next</button>
+                            </div>
+                        </form>
+                    </mat-step>
+                    <mat-step>
+                        <ng-template matStepLabel>Next</ng-template>
+                        <div class="card mt-3 mb-5">
+                            <div class="card-header">
+                                Payment Info
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h5 class="card-title">Zakat period</h5>
+                                        <p class="text-primary card-text" *ngIf="selectedPeriod" >
+                                            <strong>from</strong>
+                                            {{getPeriodBeginDate(selectedPeriod)}}
+                                            <strong>to</strong> {{getPeriodEndDate(selectedPeriod)}}
+                                        </p>
+                                        <h5 class="card-title">Initial due amount of zakat</h5>
+                                        <p class="text-primary card-text" *ngIf="selectedZakat" >
+                                            {{selectedZakat.dueAmount}} <strong>TND</strong>
+                                        </p>
+                                        <h5 class="card-title">Remaining amount </h5>
+                                        <p class="text-primary card-text" *ngIf="selectedZakat">
+                                            {{selectedZakat.remainingAmount}} <strong>TND</strong>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-1">
+                                        <mat-divider [vertical]="true" style="height:100%"></mat-divider>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h5 class="card-title">Beneficiary</h5>
+                                        <p class="text-primary card-text" *ngIf="selectedBeneficiary">
+                                            {{selectedBeneficiary.firstName}} {{selectedBeneficiary.lastName}}
+                                        </p>
+                                        <h5 class="card-title">Payment amount to register </h5>
+                                        <p class="text-success card-text" *ngIf="selectedPeriod" >
+                                            {{amountToPay}} <strong>TND</strong>
+                                        </p>
+                                        <h5 class="card-title">Zakat state after paymant</h5>
+                                        <p class="text-success card-text"
+                                           *ngIf="selectedZakat && amountToPay && selectedZakat.remainingAmount<=amountToPay">
+                                            Zakat not taxable and all payed after registering : remaining amount = 0 <strong>TND</strong>
+                                        </p>
+                                        <p class="text-warning card-text"
+                                           *ngIf="selectedZakat && amountToPay && selectedZakat.remainingAmount>amountToPay">
+                                            Zakat still taxable : new remaining amount = {{getNewRemainingAmount()}} <strong>TND</strong>
+                                        </p>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary" mat-raised-button color="basic" matStepperPrevious>Back</button>
+                            <button class="btn btn-danger" mat-raised-button (click)="stepper.reset()">Reset</button>
+                            <button class="btn btn-success" mat-raised-button (click)="save()">Save</button>
+                        </div>
+                    </mat-step>
+                </mat-vertical-stepper >
+        </div>
+    </div>
+    </mat-card>
+</div>
+
+
+

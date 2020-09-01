@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="bankAccount">
+            <h2><span jhiTranslate="zakatReminderApp.bankAccount.detail.title">Bank Account</span> {{ bankAccount.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="zakatReminderApp.bankAccount.bankName">Bank Name</span></dt>
+                <dd>
+                    <span>{{ bankAccount.bankName }}</span>
+                </dd>
+                <dt><span jhiTranslate="zakatReminderApp.bankAccount.bankAdress">Bank Adress</span></dt>
+                <dd>
+                    <span>{{ bankAccount.bankAdress }}</span>
+                </dd>
+                <dt><span jhiTranslate="zakatReminderApp.bankAccount.rib">Rib</span></dt>
+                <dd>
+                    <span>{{ bankAccount.rib }}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/bank-account', bankAccount.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

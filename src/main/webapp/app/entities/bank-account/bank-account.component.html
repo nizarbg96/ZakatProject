@@ -1,0 +1,78 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="zakatReminderApp.bankAccount.home.title">Bank Accounts</span>
+
+        <button [ngClass]="{'invisible': account.authorities[0] !== 'ROLE_ADMIN'}" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-bank-account" [routerLink]="['/bank-account/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="zakatReminderApp.bankAccount.home.createLabel">
+            Create a new Bank Account
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+
+    <div class="alert alert-warning" id="no-result" *ngIf="bankAccounts?.length === 0">
+        <span jhiTranslate="zakatReminderApp.bankAccount.home.notFound">No bankAccounts found</span>
+    </div>
+    <mat-card>
+
+        <div class="table-responsive table-borderless" id="entities" *ngIf="bankAccounts?.length > 0">
+            <table class="table table-striped" aria-describedby="page-heading">
+                <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th [ngClass]="{'invisible': account.authorities[0] !== 'ROLE_ADMIN'}" scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="bankName"><span jhiTranslate="zakatReminderApp.bankAccount.bankName">Bank Name</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="bankAdress"><span jhiTranslate="zakatReminderApp.bankAccount.bankAdress">Bank Adress</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th [ngClass]="{'invisible': account.authorities[0] !== 'ROLE_ADMIN'}" scope="col"  jhiSortBy="rib"><span jhiTranslate="zakatReminderApp.bankAccount.rib">Rib</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col" [ngClass]="{'invisible': account.authorities[0] !== 'ROLE_ADMIN'}"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let bankAccount of bankAccounts ;trackBy: trackId">
+                    <td [ngClass]="{'invisible': account.authorities[0] !== 'ROLE_ADMIN'}" ><a [routerLink]="['/bank-account', bankAccount.id, 'view']">{{ bankAccount.id }}</a></td>
+                    <td>{{ bankAccount.bankName }}</td>
+                    <td>{{ bankAccount.bankAdress }}</td>
+                    <td [ngClass]="{'invisible': account.authorities[0] !== 'ROLE_ADMIN'}" >{{ bankAccount.rib }}</td>
+                    <td [ngClass]="{'invisible': account.authorities[0] !== 'ROLE_ADMIN'}" class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/bank-account', bankAccount.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/bank-account', bankAccount.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(bankAccount)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="bankAccounts?.length > 0">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+            </div>
+        </div>
+    </mat-card>
+
+</div>

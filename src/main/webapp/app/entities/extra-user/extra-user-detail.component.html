@@ -1,0 +1,36 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="extraUser">
+            <h2><span jhiTranslate="zakatReminderApp.extraUser.detail.title">Extra User</span> {{ extraUser.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="zakatReminderApp.extraUser.bankAccount">Bank Account</span></dt>
+                <dd>
+                    <div *ngIf="extraUser.bankAccountId">
+                        <a [routerLink]="['/bank-account', extraUser.bankAccountId, 'view']">{{ extraUser.bankAccountId }}</a>
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="zakatReminderApp.extraUser.user">User</span></dt>
+                <dd>
+                    {{ extraUser.userId }}
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/extra-user', extraUser.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

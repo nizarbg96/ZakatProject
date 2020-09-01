@@ -1,0 +1,28 @@
+{
+  "zakatReminderApp": {
+    "beneficiary": {
+      "home": {
+        "title": "Beneficiaries",
+        "createLabel": "Créer un nouveau Beneficiary",
+        "createOrEditLabel": "Créer ou éditer un Beneficiary",
+        "notFound": "Aucun Beneficiary trouvé"
+      },
+      "created": "Un nouveau Beneficiary a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Beneficiary avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Beneficiary avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Beneficiary {{ id }} ?"
+      },
+      "detail": {
+        "title": "Beneficiary"
+      },
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "phoneNumber": "Phone Number",
+      "adress": "Adress",
+      "otherDetails": "Other Details",
+      "payments": "Payments",
+      "extraUser": "Extra User"
+    }
+  }
+}

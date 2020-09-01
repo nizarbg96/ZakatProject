@@ -1,0 +1,90 @@
+<div class="row mb-2">
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header" data-background-color="green">
+                <i class="material-icons">credit_card</i>
+            </div>
+            <div class="card-content">
+                <p class="category">Last Deposit</p>
+                <h3 class="card-title">{{(!!balances1)?balances1[0].balanceAmount:0}} <strong>TND</strong></h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">date_range</i> {{balances1[0].balanceDate.format('ddd, DD MMM YYYY')}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6 col-sm-6">
+        <div class="card card-stats">
+            <div class="card-header" data-background-color="blue">
+                <i class="material-icons">attach_money</i>
+            </div>
+            <div class="card-content">
+                <p class="category">Today's Nisab</p>
+                <h3 class="card-title">11880 <strong>TND</strong></h3>
+            </div>
+            <div class="card-footer">
+                <div class="stats">
+                    <i class="material-icons">update</i> Just Updated
+                </div>
+            </div>
+        </div>
+    </div>
+    <div  class="col-lg-6 col-md-6 col-sm-6">
+        <mat-card>
+            <h3 class="text-primary">Check Balances Table and add new Balances </h3>
+            <p>In Balances table you can view all deposed balances and select the balance to  edit or delete.</p>
+            <p>You can also add a new balance using our simple calculator to calculate your assets step by step and set the final balance to depose.</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <a  [routerLink]="['/balance']" class="btn btn-primary btn-round"
+                        style="width: 90%;margin:auto">balances table</a>
+                </div>
+                <div class="col-md-6">
+                    <a  [routerLink]="['/add-balance']" class="btn btn-success btn-round"
+                        style="width: 90%;margin:auto">add new balance</a>
+                </div>
+            </div>
+        </mat-card>
+
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-icon" data-background-color="blue">
+                <i class="material-icons">timeline</i>
+            </div>
+            <div class="card-content">
+                <h4 class="card-title">Last deposed balances</h4>
+                <jhi-columns-chart></jhi-columns-chart>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-md-12">
+        <mat-divider style="width: 100%"></mat-divider>
+    </div>
+</div>
+<div class="row mb-3">
+    <div class="col-md-5">
+        <jhi-balances-by-period (balancesToEmit)="balances=$event" ></jhi-balances-by-period>
+    </div>
+    <div class="col-md-1">
+        <mat-divider [vertical]="true" style="height:100%"></mat-divider>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header card-header-icon" data-background-color="blue">
+                <i class="material-icons">timeline</i>
+            </div>
+            <div class="card-content">
+                <h4 class="card-title">Chart of deposed balances by selected period </h4>
+                <jhi-balance-chart [balancesToLoad]="balances"></jhi-balance-chart>
+            </div>
+        </div>
+    </div>
+</div>
+

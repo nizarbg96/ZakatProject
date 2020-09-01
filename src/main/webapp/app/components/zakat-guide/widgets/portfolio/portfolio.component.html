@@ -1,0 +1,99 @@
+<section id="portfolio"  class="mt-0" >
+      <div class="portfolio-card">
+
+        <div class="portfolio-section portfolio-heading mat-typography" fxLayout="column" fxLayoutAlign="center center">
+            <div>
+            <h2 [ngStyle.lt-md]="{'margin-bottom': '15px'}">Know more about Zakat</h2>
+            </div>
+            <div>
+            <h3 [ngStyle.xs]="{'font-size': '18px'}" [ngStyle.sm]="{'font-size': '22px'}"></h3>
+            </div>
+        </div>
+
+        <div fxLayout="row nowrap" fxLayout.lt-sm="column"  fxLayoutGap="30px" fxLayoutGap.sm="8px" class="mb-2">
+          <div fxFlex="33.33" [about]>
+            <mat-card>
+              <img mat-card-image [src]="src1">
+              <mat-card-content>
+                <h5 class="mat-headline" [ngStyle.sm]="{'font-size': '16px'}">Who have to pay Zakat?</h5>
+                <p class="mat-subheading-2" [ngStyle.sm]="{'font-size': '12px'}">
+                    Zakat must be paid by Muslim adults who are mentally sane and in possession of an amo...                </p>
+                <mat-divider class="mb-1"></mat-divider>
+                <button class="portfolio-button" mat-icon-button><mat-icon class="text-muted">share</mat-icon></button>
+                  <button (click)="scrollToInfoTriger()" class="portfolio-button btn btn-success pull-right" [routerLink]="['info1']">see article</button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div fxFlex="33.33" [about]>
+            <mat-card >
+              <img mat-card-image [src]="src2">
+              <mat-card-content>
+                <h5 class="mat-headline" [ngStyle.sm]="{'font-size': '16px'}"> What is Nisab & Hawl (Period)</h5>
+                <p class="mat-subheading-2" [ngStyle.sm]="{'font-size': '12px'}">
+                    The nisab is the minimum amount of wealth a Muslim must possess before they bec...               </p>
+                <mat-divider class="mb-1"></mat-divider>
+                <button class="portfolio-button" mat-icon-button><mat-icon class="text-muted">share</mat-icon></button>
+                  <button (click)="scrollToInfoTriger()" class="portfolio-button btn btn-success pull-right " [routerLink]="['info2']">see article</button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div fxFlex="33.33" [about]>
+            <mat-card >
+              <img mat-card-image [src]="src3">
+              <mat-card-content>
+                <h5 class="mat-headline" [ngStyle.sm]="{'font-size': '16px'}">When do I pay Zakat</h5>
+                <p class="mat-subheading-2" [ngStyle.sm]="{'font-size': '12px'}">
+                    The moment you possess wealth above the nisab threshold you become eligible to p...               </p>
+                <mat-divider class="mb-1"></mat-divider>
+                <button class="portfolio-button" mat-icon-button><mat-icon class="text-muted">share</mat-icon></button>
+                  <button (click)="scrollToInfoTriger()"  class="portfolio-button btn btn-success pull-right" [routerLink]="['info3']">see article</button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+
+        <div class="portfolio-row" fxLayout="row nowrap" fxLayout.lt-sm="column" fxLayoutGap="30px" fxLayoutGap.sm="8px">
+          <div fxFlex="33.33" [about]>
+            <mat-card>
+              <img mat-card-image [src]="src4" alt="#">
+              <mat-card-content>
+                <h5 class="mat-headline" [ngStyle.sm]="{'font-size': '16px'}">Benficiaries of Zakat </h5>
+                <p class="mat-subheading-2" [ngStyle.sm]="{'font-size': '12px'}">
+                    Unlike normal charity, the recipients of Zakat have been specified by Allah in the Holy...                </p>
+                <mat-divider class="mb-1"></mat-divider>
+                <button class="portfolio-button" mat-icon-button><mat-icon class="text-muted">share</mat-icon></button>
+                <button (click)="scrollToInfoTriger()" class="portfolio-button btn btn-success pull-right" [routerLink]="['info4']">see article</button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div fxFlex="33.33" [about]>
+            <mat-card>
+              <img mat-card-image [src]="src5" alt="#">
+              <mat-card-content>
+                <h5 class="mat-headline" [ngStyle.sm]="{'font-size': '16px'}">Does Zakat become a debt?</h5>
+                <p class="mat-subheading-2" [ngStyle.sm]="{'font-size': '12px'}">
+                    When a person misses a payment of Zakat, the outstanding balance becomes a debt...                </p>
+                <mat-divider class="mb-1"></mat-divider>
+                <button class="portfolio-button" mat-icon-button><mat-icon class="text-muted">share</mat-icon></button>
+                  <button (click)="scrollToInfoTriger()" class="portfolio-button btn btn-success pull-right" [routerLink]="['info5']">see article</button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div fxFlex="33.33" [about]>
+            <mat-card>
+              <img mat-card-image [src]="src6">
+              <mat-card-content>
+                <h5 class="mat-headline" [ngStyle.sm]="{'font-size': '16px'}">What do I count in my Wealth?
+                </h5>
+                <p class="mat-subheading-2" [ngStyle.sm]="{'font-size': '12px'}">
+                    Your wealth or net assets can be summed up as the liquid assets you possess minus...         </p>
+                  <mat-divider class="mb-1"></mat-divider>
+                <button class="portfolio-button" mat-icon-button><mat-icon class="text-muted">share</mat-icon></button>
+                  <button (click)="scrollToInfoTriger()" class="portfolio-button btn btn-success pull-right" [routerLink]="['info6']">see article</button>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+
+      </div>
+</section>

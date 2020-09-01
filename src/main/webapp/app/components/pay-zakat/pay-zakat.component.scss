@@ -1,0 +1,34 @@
+.mat-stepper-horizontal {
+  margin-top: 8px;
+}
+
+.mat-form-field {
+  margin-top: 16px;
+}
+section {
+  background: url('../../../content/images/banner_payments.jpg') no-repeat center;
+  background-size: cover;
+  min-height: auto;
+  height: 40vh;
+  margin: -30px -30px 0px;
+  display: block;
+  outline: 0 !important;
+  overflow: hidden;
+}
+h1 {
+  font-family: Georgia, serif;
+  color: #666666;
+  font-size: 20px;
+  text-shadow: 5px 5px 10px white;
+  line-height: 1em;
+}
+
+h1 strong {
+  color: #65ba68;
+  text-shadow: 5px 5px 10px white;
+  display: block;
+  font-size: 65px;
+  font-weight: normal;
+  letter-spacing: -3.5px;
+  line-height: 0.75em;
+}

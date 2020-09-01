@@ -1,0 +1,25 @@
+{
+  "zakatReminderApp": {
+    "balance": {
+      "home": {
+        "title": "Balances",
+        "createLabel": "Créer un nouveau Balance",
+        "createOrEditLabel": "Créer ou éditer un Balance",
+        "notFound": "Aucun Balance trouvé"
+      },
+      "created": "Un nouveau Balance a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Balance avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Balance avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Balance {{ id }} ?"
+      },
+      "detail": {
+        "title": "Balance"
+      },
+      "balanceAmount": "Balance Amount",
+      "balanceDate": "Balance Date",
+      "bankAccount": "Bank Account",
+      "period": "Period"
+    }
+  }
+}

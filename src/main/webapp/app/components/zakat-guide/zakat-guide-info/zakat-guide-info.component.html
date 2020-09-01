@@ -1,0 +1,27 @@
+
+<section class="wrapper style1 mt-n4" #about>
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="image round fit text-center">
+            <a class="link"><img [src]="src1" alt="" /></a>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <h3>What is                           Zakat-Reminder Application</h3>
+        <p>First the application will allow the user to register and have his secure space after activation via e-mail, the user will authenticate and thus link his bank account to the application if the bank dedicated to his account already exhibits a secure open API rest so he can get all his balances history to the application database, otherwise the user will enter his balances manually each month. </p>
+        <p>Following these scales, an algorithm will calculate the periods due for the user where he has to pay Zakat, when the user  got a period for which he have to pay Zakat, the user will receive a notification in his mobile phone that reminds him to  pay the mandatory alms , therefore he can pay this Zakat and consult after the platform to record this payment, at any time the user can see the history of his payments and the amount remaining to be paid for the periods due to him. the Zakat-Reminder application Provides the user with all the statistics, graphs and tables of deposited scales, payments and all informations entered by the him so that he can track his activity of the Zakat process. The user can view, modify, delete and manage all  datas related to his profile.</p>
+    </div>
+</div>
+</section>
+<!-- Section -->
+<section class="wrapper style2">
+    <app-portfolio (scrollToInfo)="scrollToElement(info)"></app-portfolio>
+</section>
+
+<!-- Section -->
+<section class="wrapper style1" #info>
+    <router-outlet></router-outlet>
+</section>
+

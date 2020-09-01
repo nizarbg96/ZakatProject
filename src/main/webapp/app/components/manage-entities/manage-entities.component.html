@@ -1,0 +1,100 @@
+<section id="portfolio"  class="mt-0" >
+    <div class="portfolio-card">
+
+        <div class="portfolio-section portfolio-heading mat-typography" fxLayout="column" fxLayoutAlign="center center">
+            <div>
+                <h2 [ngStyle.lt-md]="{'margin-bottom': '15px','margin-top':'30px'}">Manage Entities</h2>
+            </div>
+            <div>
+                <h3 [ngStyle.xs]="{'font-size': '18px'}" [ngStyle.sm]="{'font-size': '22px'}"></h3>
+            </div>
+        </div>
+
+        <div fxLayout="row nowrap" fxLayout.lt-sm="column"  fxLayoutGap="30px" fxLayoutGap.sm="8px" class="mb-2">
+            <div fxFlex="25" [about]>
+                <mat-card>
+                    <img mat-card-image [src]="src1" style="transform: scale(0.5)">
+                    <mat-card-content>
+                        <h5 class="mat-headline" [ngStyle.sm]="{'font-size': '16px'}">Balances</h5>
+                        <p class="mat-subheading-2" [ngStyle.sm]="{'font-size': '12px'}">
+                        Here you can manage balances deposed by users</p>
+                        <mat-divider class="mb-1"></mat-divider>
+                        <button  class="portfolio-button btn btn-primary " routerLink="/balance">view table</button>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div fxFlex="25" [about]>
+                <mat-card >
+                    <img mat-card-image [src]="src2" style="transform: scale(0.5)">
+                    <mat-card-content>
+                        <h5 class="mat-headline" [ngStyle.sm]="{'font-size': '16px'}"> Periods</h5>
+                        <p class="mat-subheading-2" [ngStyle.sm]="{'font-size': '12px'}">
+                            Here you can manage periods of all users.</p>
+                        <mat-divider class="mb-1"></mat-divider>
+                        <button  class="portfolio-button btn btn-primary " routerLink="/period">view table</button>                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div fxFlex="25" [about]>
+                <mat-card >
+                    <img mat-card-image [src]="src3" style="transform: scale(0.5)">
+                    <mat-card-content>
+                        <h5 class="mat-headline" [ngStyle.sm]="{'font-size': '16px'}">BankAccounts</h5>
+                        <p class="mat-subheading-2" [ngStyle.sm]="{'font-size': '12px'}">
+                            Here you can manage each user bank account.</p>
+                        <mat-divider class="mb-1"></mat-divider>
+                        <button  class="portfolio-button btn btn-primary " routerLink="/bank-account">view table</button>                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div fxFlex="25" [about]>
+                <mat-card>
+                    <img mat-card-image [src]="src4" alt="#" style="transform: scale(0.5)">
+                    <mat-card-content>
+                        <h5 class="mat-headline" [ngStyle.sm]="{'font-size': '16px'}">Zakats </h5>
+                        <p class="mat-subheading-2" [ngStyle.sm]="{'font-size': '12px'}">
+                            Here you can manage Zakats that user should pay.</p>
+                        <mat-divider class="mb-1"></mat-divider>
+                        <button  class="portfolio-button btn btn-primary " routerLink="/zakat">view table</button>                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+            <div class="portfolio-row " fxLayout="row nowrap" fxLayout.lt-sm="column" fxLayoutGap="30px" fxLayoutGap.sm="8px" >
+
+                <div fxFlex="25" [about]>
+                    <mat-card>
+                        <img mat-card-image [src]="src5" alt="#" style="transform: scale(0.5)">
+                        <mat-card-content>
+                            <h5 class="mat-headline" [ngStyle.sm]="{'font-size': '16px'}">Beneficiaries</h5>
+                            <p class="mat-subheading-2" [ngStyle.sm]="{'font-size': '12px'}">
+                                Here, you can view,add,edit and delete beneficiaries.</p>
+                            <mat-divider class="mb-1"></mat-divider>
+                            <button  class="portfolio-button btn btn-primary " routerLink="/beneficiary">view table</button>                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div fxFlex="25" [about]>
+                    <mat-card>
+                        <img mat-card-image [src]="src6" style="transform: scale(0.5)">
+                        <mat-card-content>
+                            <h5 class="mat-headline" [ngStyle.sm]="{'font-size': '16px'}">Payments
+                            </h5>
+                            <p class="mat-subheading-2" [ngStyle.sm]="{'font-size': '12px'}">
+                               Here, you can manage payments done by users.</p>
+                            <mat-divider class="mb-1"></mat-divider>
+                            <button  class="portfolio-button btn btn-primary" routerLink="/payment">view table</button>                        </mat-card-content>
+                    </mat-card>
+                </div>
+                <div fxFlex="25" [about]>
+                    <mat-card>
+                        <img mat-card-image [src]="src7" style="transform: scale(0.5)">
+                        <mat-card-content>
+                            <h5 class="mat-headline" [ngStyle.sm]="{'font-size': '16px'}">Extra users
+                            </h5>
+                            <p class="mat-subheading-2" [ngStyle.sm]="{'font-size': '12px'}">
+                                Extra user is a simulation of user entity.</p>
+                            <mat-divider class="mb-1"></mat-divider>
+                            <button  class="portfolio-button btn btn-primary" routerLink="/extra-user">view table</button>                        </mat-card-content>
+                    </mat-card>
+                </div>
+
+            </div>
+    </div>
+</section>

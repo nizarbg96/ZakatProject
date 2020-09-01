@@ -1,0 +1,17 @@
+
+<section id="heading" class="mat-typography mt-n4 heading-section shadow-lg"  >
+    <div>
+        <div class="row">
+            <div class="col-md-4">
+                <div  fxLayout="column" fxLayoutAlign="center center">
+                    <div [class.animated]="isHeading" [class.fadeInLeft]="isHeading">
+                        <h1 class="font-weight-bold"[ngStyle.xs]="{'font-size': '32px'}" [ngStyle.sm]="{'font-size': '42px'}">Welcome to our Zakat guide</h1>
+                    </div>
+                    <div fxLayout="row" [class.animated]="isHeadingBtn" [class.fadeIn]="isHeadingBtn" [class.heading-btn]="isHeadingBtn">
+                        <a class="heading-button-left" mat-flat-button (click)="scrollToGuide()" >Explore</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

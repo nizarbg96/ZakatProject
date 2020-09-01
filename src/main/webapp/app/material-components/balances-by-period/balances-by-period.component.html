@@ -1,0 +1,34 @@
+<h3 class="text-primary font-weight-bold">Load Balances By Period</h3>
+<mat-form-field style="min-width: 400px">
+    <mat-label>Period</mat-label>
+    <mat-select style="min-width: 400px;max-width: max-content" (selectionChange)="loadTable($event.value)">
+        <mat-option style="min-width: 300px" *ngFor="let period of periods" [value]="period.id">
+            <strong>from</strong> {{getPeriodBeginDate(period)}} <strong>to</strong> {{getPeriodEndDate(period)}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+<br>
+<mat-divider></mat-divider>
+<br>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="balanceDate">
+            <th mat-header-cell *matHeaderCellDef> <h4 class="text-center" style="color: #1da1f2">Balance Date</h4> </th>
+            <td  class="text-center" mat-cell *matCellDef="let element"> {{element.balanceDate.format('dddd Do MMMM, YYYY')}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="balanceAmount">
+            <th mat-header-cell *matHeaderCellDef> <h4 class="text-center" style="color: #1da1f2">Balance Amount</h4> </th>
+            <td mat-cell  class="text-center" *matCellDef="let element"> {{element.balanceAmount}} <strong>TND</strong> </td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>

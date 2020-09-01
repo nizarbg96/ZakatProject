@@ -1,0 +1,93 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="zakatReminderApp.balance.home.title">Balances</span>
+
+        <button [ngClass]="{'invisible': account.authorities[0] !== 'ROLE_ADMIN'}" id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-balance" [routerLink]="['/balance/new']">
+            <fa-icon icon="plus"></fa-icon>
+            <span  jhiTranslate="zakatReminderApp.balance.home.createLabel">
+            Create a new Balance
+            </span>
+        </button>
+    </h2>
+
+    <jhi-alert-error></jhi-alert-error>
+
+    <jhi-alert></jhi-alert>
+    <div class="alert alert-warning" id="no-result" *ngIf="balances?.length === 0">
+        <span jhiTranslate="zakatReminderApp.balance.home.notFound">No balances found</span>
+    </div>
+    <mat-card>
+
+        <div class="table-responsive table-borderless" id="entities" *ngIf="balances?.length > 0">
+            <table class="table table-striped" aria-describedby="page-heading">
+                <thead>
+                <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+                    <th [ngClass]="{'invisible': account.authorities[0] !== 'ROLE_ADMIN'}" scope="col"  jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="balanceAmount"><span jhiTranslate="zakatReminderApp.balance.balanceAmount">Balance Amount</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="balanceDate"><span jhiTranslate="zakatReminderApp.balance.balanceDate">Balance Date</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th [ngClass]="{'invisible': account.authorities[0] !== 'ROLE_ADMIN'}" scope="col"  jhiSortBy="bankAccountId"><span jhiTranslate="zakatReminderApp.balance.bankAccount">Bank Account</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th scope="col"  jhiSortBy="periodId"><span jhiTranslate="zakatReminderApp.balance.period">Period</span> <fa-icon icon="sort"></fa-icon></th>
+                    <th [ngClass]="{'invisible': account.authorities[0] !== 'ROLE_ADMIN'}" scope="col"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let balance of balances ;trackBy: trackId">
+                    <td [ngClass]="{'invisible': account.authorities[0] !== 'ROLE_ADMIN'}"><a [routerLink]="['/balance', balance.id, 'view']">{{ balance.id }}</a></td>
+                    <td>{{ balance.balanceAmount }}</td>
+                    <td>{{ balance.balanceDate | date:'mediumDate' }}</td>
+                    <td [ngClass]="{'invisible': account.authorities[0] !== 'ROLE_ADMIN'}">
+                        <div *ngIf="balance.bankAccountId">
+                            <a [routerLink]="['/bank-account', balance.bankAccountId , 'view']" >{{ balance.bankAccountId }}</a>
+                        </div>
+                    </td>
+                    <td>
+                        <div *ngIf="balance.periodId && account.authorities[0] === 'ROLE_ADMIN' ">
+                            <a [routerLink]="['/period', balance.periodId , 'view']" >{{ balance.periodId }}</a>
+                        </div>
+                        <div *ngIf="balance.periodId && account.authorities[0] !== 'ROLE_ADMIN' ">
+                            <a >
+                                <strong>from </strong>{{ findPeriod(balance.periodId).beginDate.format("DD/MM/YYYY") }}
+                                <strong> to </strong>{{ findPeriod(balance.periodId).endDate ? findPeriod(balance.periodId).endDate.format("DD/MM/YYYY") : "now" }}  </a>
+                        </div>
+
+                    </td>
+                    <td [ngClass]="{'invisible': account.authorities[0] !== 'ROLE_ADMIN'}" class="text-right">
+                        <div class="btn-group">
+                            <button type="submit"
+                                    [routerLink]="['/balance', balance.id, 'view']"
+                                    class="btn btn-info btn-sm">
+                                <fa-icon icon="eye"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                            </button>
+
+                            <button type="submit"
+                                    [routerLink]="['/balance', balance.id, 'edit']"
+                                    class="btn btn-primary btn-sm">
+                                <fa-icon icon="pencil-alt"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                            </button>
+
+                            <button type="submit" (click)="delete(balance)"
+                                    class="btn btn-danger btn-sm">
+                                <fa-icon icon="times"></fa-icon>
+                                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div *ngIf="balances?.length > 0">
+            <div class="row justify-content-center">
+                <jhi-item-count [page]="page" [total]="totalItems" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+            </div>
+
+            <div class="row justify-content-center">
+                <ngb-pagination [collectionSize]="totalItems" [(page)]="ngbPaginationPage" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage($event)"></ngb-pagination>
+            </div>
+        </div>
+    </mat-card>
+
+</div>

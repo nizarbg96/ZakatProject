@@ -1,0 +1,92 @@
+
+<div class="row mb-2" style="margin-top: 100px">
+    <div class="col-lg-4 col-md-6">
+    <div class="card card-product">
+        <div class="card-image" data-header-animation="true">
+            <a href="#pablo">
+                <img class="img" [src]="card3">
+            </a>
+        </div>
+        <div class="card-content">
+            <div class="card-actions mt-2">
+                <div class=" text-center">
+                    <a   class="btn btn-success btn-round"
+                         style="width: 90%;margin:auto" routerLink="/add-balance">Add new balance</a>
+                </div>
+            </div>
+            <h4 class="card-title">
+                <a href="#pablo">Add a new balance</a>
+            </h4>
+            <div class="card-description">
+                Here ou can add your balances manually.
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="price" *ngIf="balances">
+                <h4>Last deposed balance : {{(balances.length>0)?balances[0].balanceAmount:0}} <strong>TND</strong></h4>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6">
+    <div class="card card-product">
+        <div class="card-image" data-header-animation="true">
+            <a href="#pablo">
+                <img class="img" [src]="card1">
+            </a>
+        </div>
+        <div class="card-content">
+            <div class="card-actions mt-2">
+                <div class=" text-center">
+                    <a   class="btn btn-success btn-round"
+                         style="width: 90%;margin:auto" routerLink="/pay-zakat">Give zakat</a>
+                </div>
+            </div>
+            <h4 class="card-title">
+                <a href="#pablo" >Make a payement</a>
+            </h4>
+            <div class="card-description">
+                Register payments you made to Zakat beneficiaries.
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="price">
+                <h4>Today's Nisab : 11880 <strong>TND</strong></h4>
+            </div>
+            <div class="stats pull-right">
+                <p class="category"><i class="material-icons">place</i> Tunisia</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-4 col-md-6">
+    <div class="card card-product">
+        <div class="card-image" data-header-animation="true">
+            <a href="#pablo">
+                <img class="img" [src]="card2">
+            </a>
+        </div>
+        <div class="card-content">
+            <div class="card-actions mt-2">
+                <div class=" text-center">
+                    <a   class="btn btn-success btn-round" routerLink="/guide"
+                         style="width: 90%;margin:auto">What is zakat ? </a>
+                </div>
+            </div>
+            <h4 class="card-title">
+                <a href="#pablo">Zakat Guide</a>
+            </h4>
+            <div class="card-description">
+                Find out how application works
+            </div>
+        </div>
+        <div class="card-footer">
+            <div class="price">
+                <h4>Find out more about <a [routerLink]="['guide','info']">Zakat Process</a></h4>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,50 @@
+{
+    "name": "Beneficiary",
+    "fields": [
+        {
+            "fieldName": "firstName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "lastName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "phoneNumber",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "adress",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "otherDetails",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "payment",
+            "otherEntityRelationshipName": "beneficiary",
+            "relationshipName": "payments"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "extraUser",
+            "otherEntityRelationshipName": "beneficiarys",
+            "relationshipName": "extraUser",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20200228205200",
+    "entityTableName": "beneficiary",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,50 @@
+{
+    "name": "ExtraUser",
+    "fields": [],
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "bankAccount",
+            "otherEntityRelationshipName": "extraUser",
+            "relationshipName": "bankAccount",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-one",
+            "otherEntityName": "user",
+            "otherEntityRelationshipName": "extraUser",
+            "relationshipName": "user",
+            "otherEntityField": "id",
+            "ownerSide": true
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "beneficiary",
+            "otherEntityRelationshipName": "extraUser",
+            "relationshipName": "beneficiarys"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "zakat",
+            "otherEntityRelationshipName": "extraUser",
+            "relationshipName": "zakats"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "period",
+            "otherEntityRelationshipName": "extraUser",
+            "relationshipName": "periods"
+        }
+    ],
+    "changelogDate": "20200228205300",
+    "entityTableName": "extra_user",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "readOnly": false,
+    "clientRootFolder": "",
+    "applications": "*"
+}

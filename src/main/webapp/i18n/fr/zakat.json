@@ -1,0 +1,26 @@
+{
+  "zakatReminderApp": {
+    "zakat": {
+      "home": {
+        "title": "Zakats",
+        "createLabel": "Créer un nouveau Zakat",
+        "createOrEditLabel": "Créer ou éditer un Zakat",
+        "notFound": "Aucun Zakat trouvé"
+      },
+      "created": "Un nouveau Zakat a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Zakat avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Zakat avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Etes-vous certain de vouloir supprimer le Zakat {{ id }} ?"
+      },
+      "detail": {
+        "title": "Zakat"
+      },
+      "dueAmount": "Due Amount",
+      "remainingAmount": "Remaining Amount",
+      "payments": "Payments",
+      "period": "Period",
+      "extraUser": "Extra User"
+    }
+  }
+}

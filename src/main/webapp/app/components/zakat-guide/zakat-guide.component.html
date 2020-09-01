@@ -1,0 +1,60 @@
+
+<app-heading (scrollToguideFromHeading)="scrollToElement(guide)"  ></app-heading>
+<app-about (scrollToguide)="scrollDecision($event)"></app-about>
+<section class="showcase shadow-lg " style="margin: 0px -50px 100px ;background: white" #guide>
+<div class="container-fluid p-0">
+    <div class="row no-gutters">
+
+        <div class="col-lg-6 order-lg-2 text-white showcase-img" #guide1 style="background-image: url('../../../content/images/purpose-zakat-guide (2).jpg');"></div>
+        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+            <h2>What is the purpose of Zakat?</h2>
+            <p class="lead mb-0">The purpose of Zakat is ultimately to increase faith and devotion to Allah (God). It also acts as a social safety net for those in need and a means to uplift the entire community and help Muslims and Islam thrive. Zakat is a pillar of Islam and as such it works together with the other four pillars as a way of upholding and strengthening the religion.
+                By giving Zakat Muslims cleanse their own wealth. Zakat helps to keep the economy flowing by freeing people from burden and giving them the chance to reach their potential.
+                Zakat, when it works properly, should have a long-term impact for the state of the whole Muslim community.</p>
+            <br>
+            <a  class="btn btn-primary btn-round" [routerLink]="['info']"
+                style="width: 60%;margin:auto;color: white">how does Zakat work ?</a>
+        </div>
+    </div>
+    <div class="row no-gutters">
+        <div class="col-lg-6 text-white showcase-img" #guide2 style="background-image: url('../../../content/images/calculate-zakat-guide (2).jpg');"></div>
+        <div class="col-lg-6 my-auto showcase-text">
+            <h2>Calculating and adding a balance</h2>
+            <p class="lead mb-0"><p>Our simple to use calculator will help take the stress out of working out your Zakat amount. Put simply, there are 4 simple steps to working out your Zakat:</p>
+            <ul>
+                <li>Work out what you own</li>
+                <li>Then take off what you owe</li>
+                <li>Work out the balance and check that it’s more than the Nisab value or not</li>
+                <li>By balance date we find out to which period your balance belongs than save it.</li>
+            </ul>
+            <br>
+            <a  class="btn btn-primary btn-round"
+                style="width: 60%;margin:auto;color: white">add a balance</a>
+
+        </div>
+        </div>
+    <div class="row no-gutters">
+        <div class="col-lg-6 order-lg-2 text-white showcase-img" #guide3  style="background-image: url('../../../content/images/give-zakat-guide (2).jpg');"></div>
+        <div class="col-lg-6 order-lg-1 my-auto showcase-text">
+            <h2>Give Zakat</h2>
+            <p class="lead mb-0">
+                Our Application alert you when you are due to pay Zakat, therefore you
+                 can see periods that u should pay, select which one you want to pay and the beneficiary to give,
+                after saving a payment , you can check beneficiaries payment history and remaining amount if exists that
+                you still have to pay to complete your Zakat.
+            </p>
+            <br>
+            <a  class="btn btn-primary btn-round"
+                style="width: 60%;margin:auto;color: white">Give Zakat</a>
+        </div>
+    </div>
+</div>
+</section>
+
+
+
+
+
+
+
+

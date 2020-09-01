@@ -1,0 +1,52 @@
+<div class="row mb-2">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header card-header-icon" data-background-color="red">
+                <i class="material-icons">account_balance</i>
+            </div>
+            <div class="card-content">
+                <h4 class="card-title">Last Deposits</h4>
+                <div class="row">
+                    <div class="col-md-4 border mb-auto mt-auto " style="height: 50vh ;overflow-y: scroll;width:100%;">
+                        <div class="table-responsive table-sales">
+                            <table class="table">
+                                <tbody>
+                                <tr *ngFor="let balance of balances" >
+                                    <td>
+                                        <div *ngIf="!balance" >
+                                            <mat-icon style="color:grey">trending_flat</mat-icon>
+                                        </div>
+                                        <div *ngIf="balance && balance.balanceAmount>=NISAB">
+                                            <mat-icon style="color: #00c853">trending_up</mat-icon>
+                                        </div>
+                                        <div *ngIf="balance && balance.balanceAmount<NISAB">
+                                            <mat-icon style="color: firebrick">trending_down</mat-icon>
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <div *ngIf="!balance">-----</div>
+                                        <div *ngIf="balance">{{balance.balanceAmount}}<strong> TND</strong></div>
+                                    </td>
+                                    <td class="text-right">
+                                        <div *ngIf="!balance">----------------------</div>
+                                        <div *ngIf="balance">{{balance.balanceDate.format('dddd Do MMMM, YYYY')}}</div>
+                                    </td>
+                                    <td class="text-right">
+                                        <p *ngIf="!balance" class="text-danger font-weight-bold">---------</p>
+                                        <p *ngIf="balance && balance.balanceAmount>=NISAB" class="text-success font-weight-bold">above NISAB</p>
+                                        <p *ngIf="balance && balance.balanceAmount<NISAB" class="text-danger font-weight-bold">under NISAB</p>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 col-md-offset-1 mt-n3  mb-4 ">
+                        <jhi-global-plugin style="width:95%; margin: auto; max-height: 50vh"></jhi-global-plugin>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
