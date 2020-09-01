@@ -5,8 +5,7 @@ services:
     # volumes:
     #     - ~/volumes/jhipster/zakat_reminder/mysql/:/var/lib/mysql/
     environment:
-      - MYSQL_USER=root
-      - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+      - MYSQL_ROOT_PASSWORD=root
       - MYSQL_DATABASE=zakat_reminder
     ports:
       - 3306:3306
